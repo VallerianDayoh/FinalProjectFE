@@ -1,0 +1,25 @@
+{
+    "services": [
+        {
+            "id": "1",
+            "title": "SEO Optimization",
+            "description": "Boost your organic traffic with our data-driven SEO strategies.",
+            "price": "$500/mo",
+            "icon": "Search"
+        },
+        {
+            "id": "2",
+            "title": "Social Media Marketing",
+            "description": "Engage your audience across all major social platforms.",
+            "price": "$300/mo",
+            "icon": "Share2"
+        },
+        {
+            "id": "3",
+            "title": "Content Creation",
+            "description": "High-quality content that resonates with your target audience.",
+            "price": "$100/article",
+            "icon": "PenTool"
+        }
+    ]
+}
