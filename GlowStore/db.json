@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Vitamin C Serum",
+      "description": "Brightening serum with 20% vitamin C for radiant skin",
+      "price": 29.99,
+      "category": "Serum",
+      "image": "/produk/vitaminC.jpeg",
+      "rating": 4.8,
+      "stock": 50
+    },
+    {
+      "id": "2",
+      "name": "Hyaluronic Acid Moisturizer",
+      "description": "Intensely hydrating moisturizer for all skin types",
+      "price": 24.99,
+      "category": "Moisturizer",
+      "image": "/produk/mois.jpeg",
+      "rating": 4.7,
+      "stock": 30
+    },
+    {
+      "id": "3",
+      "name": "Retinol Night Cream",
+      "description": "Anti-aging night cream with retinol for smoother skin",
+      "price": 34.99,
+      "category": "Night Cream",
+      "image": "/produk/reti.jpeg",
+      "rating": 4.6,
+      "stock": 20
+    },
+    {
+      "id": "4",
+      "name": "Gentle Foaming Cleanser",
+      "description": "pH-balanced cleanser for sensitive skin",
+      "price": 18.99,
+      "category": "Cleanser",
+      "image": "/produk/clen.jpeg",
+      "rating": 4.5,
+      "stock": 40
+    },
+    {
+      "id": "5",
+      "name": "SPF 50 Sunscreen",
+      "description": "Broad-spectrum sunscreen with zinc oxide",
+      "price": 22.99,
+      "category": "Sunscreen",
+      "image": "/produk/sunscreen.jpeg",
+      "rating": 4.9,
+      "stock": 35
+    },
+    {
+      "id": "6",
+      "name": "Hydrating mask",
+      "description": "Deep cleansing and hydrating face mask for all skin types",
+      "price": 15.99,
+      "category": "Mask",
+      "image": "/produk/mask.jpeg",
+      "rating": 4.3,
+      "stock": 5
+    }
+  ]
+}
