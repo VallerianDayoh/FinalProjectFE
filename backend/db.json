@@ -1,25 +1,247 @@
 {
-    "services": [
+    "products": [
         {
-            "id": "1",
-            "title": "SEO Optimization",
-            "description": "Boost your organic traffic with our data-driven SEO strategies.",
-            "price": "$500/mo",
-            "icon": "Search"
+            "id": 1,
+            "name": "Gentle Foam Cleanser",
+            "category": "Cleansers",
+            "price": 145000,
+            "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80",
+            "description": "A gentle, pH-balanced foam cleanser that effectively removes dirt, oil, and makeup without stripping your skin's natural moisture.",
+            "ingredients": [
+                "Glycerin",
+                "Salicylic Acid",
+                "Aloe Vera",
+                "Green Tea Extract"
+            ],
+            "stock": 50,
+            "rating": 4.5
         },
         {
-            "id": "2",
-            "title": "Social Media Marketing",
-            "description": "Engage your audience across all major social platforms.",
-            "price": "$300/mo",
-            "icon": "Share2"
+            "id": 2,
+            "name": "Hydrating Toner",
+            "category": "Toners",
+            "price": 165000,
+            "image": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&q=80",
+            "description": "Alcohol-free hydrating toner that balances skin's pH and provides deep hydration for a healthy, glowing complexion.",
+            "ingredients": [
+                "Hyaluronic Acid",
+                "Rose Water",
+                "Witch Hazel",
+                "Niacinamide"
+            ],
+            "stock": 45,
+            "rating": 4.7
         },
         {
-            "id": "3",
-            "title": "Content Creation",
-            "description": "High-quality content that resonates with your target audience.",
-            "price": "$100/article",
-            "icon": "PenTool"
+            "id": 3,
+            "name": "Vitamin C Serum",
+            "category": "Serums",
+            "price": 285000,
+            "image": "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?w=500&q=80",
+            "description": "Brightening vitamin C serum that reduces dark spots, evens skin tone, and boosts collagen production for youthful skin.",
+            "ingredients": [
+                "Vitamin C 15%",
+                "Vitamin E",
+                "Ferulic Acid",
+                "Hyaluronic Acid"
+            ],
+            "stock": 30,
+            "rating": 4.8
+        },
+        {
+            "id": 4,
+            "name": "Niacinamide Serum",
+            "category": "Serums",
+            "price": 195000,
+            "image": "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&q=80",
+            "description": "10% Niacinamide serum that minimizes pores, controls oil, and improves overall skin texture and clarity.",
+            "ingredients": [
+                "Niacinamide 10%",
+                "Zinc PCA",
+                "Tamarind Extract",
+                "Hyaluronic Acid"
+            ],
+            "stock": 40,
+            "rating": 4.6
+        },
+        {
+            "id": 5,
+            "name": "Moisturizing Cream",
+            "category": "Moisturizers",
+            "price": 225000,
+            "image": "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&q=80",
+            "description": "Rich, non-greasy moisturizer that provides 24-hour hydration and strengthens skin barrier for soft, supple skin.",
+            "ingredients": [
+                "Ceramides",
+                "Hyaluronic Acid",
+                "Squalane",
+                "Peptides"
+            ],
+            "stock": 55,
+            "rating": 4.7
+        },
+        {
+            "id": 6,
+            "name": "Gel Moisturizer",
+            "category": "Moisturizers",
+            "price": 185000,
+            "image": "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?w=500&q=80",
+            "description": "Lightweight gel moisturizer perfect for oily and combination skin. Absorbs quickly without leaving greasy residue.",
+            "ingredients": [
+                "Aloe Vera",
+                "Cucumber Extract",
+                "Green Tea",
+                "Allantoin"
+            ],
+            "stock": 48,
+            "rating": 4.5
+        },
+        {
+            "id": 7,
+            "name": "Sunscreen SPF 50",
+            "category": "Sunscreen",
+            "price": 155000,
+            "image": "https://images.unsplash.com/photo-1556228720-1957be83f325?w=500&q=80",
+            "description": "Broad-spectrum SPF 50 sunscreen with PA++++ protection. Lightweight, no white cast, perfect for daily use.",
+            "ingredients": [
+                "Zinc Oxide",
+                "Titanium Dioxide",
+                "Niacinamide",
+                "Centella Asiatica"
+            ],
+            "stock": 60,
+            "rating": 4.9
+        },
+        {
+            "id": 8,
+            "name": "Retinol Night Cream",
+            "category": "Treatments",
+            "price": 325000,
+            "image": "https://images.unsplash.com/photo-1612817288484-929134772840?w=500&q=80",
+            "description": "Anti-aging night cream with retinol to reduce fine lines, wrinkles, and improve skin texture overnight.",
+            "ingredients": [
+                "Retinol 0.5%",
+                "Hyaluronic Acid",
+                "Vitamin E",
+                "Shea Butter"
+            ],
+            "stock": 25,
+            "rating": 4.8
+        },
+        {
+            "id": 9,
+            "name": "Hydrating Sheet Mask",
+            "category": "Masks",
+            "price": 35000,
+            "image": "https://images.unsplash.com/photo-1546942928-1959869192e1?w=500&q=80",
+            "description": "Intensive hydrating sheet mask with hyaluronic acid. Provides instant moisture boost and plumping effect.",
+            "ingredients": [
+                "Hyaluronic Acid",
+                "Collagen",
+                "Aloe Vera",
+                "Rose Extract"
+            ],
+            "stock": 100,
+            "rating": 4.6
+        },
+        {
+            "id": 10,
+            "name": "Clay Mask",
+            "category": "Masks",
+            "price": 175000,
+            "image": "https://images.unsplash.com/photo-1570194065650-d99fb4b3a496?w=500&q=80",
+            "description": "Purifying clay mask that draws out impurities, unclogs pores, and controls excess oil for clearer skin.",
+            "ingredients": [
+                "Kaolin Clay",
+                "Bentonite Clay",
+                "Tea Tree Oil",
+                "Charcoal"
+            ],
+            "stock": 35,
+            "rating": 4.5
+        },
+        {
+            "id": 11,
+            "name": "Eye Cream",
+            "category": "Eye Care",
+            "price": 245000,
+            "image": "https://images.unsplash.com/photo-1571781535009-53632188d363?w=500&q=80",
+            "description": "Revitalizing eye cream that reduces dark circles, puffiness, and fine lines around delicate eye area.",
+            "ingredients": [
+                "Caffeine",
+                "Peptides",
+                "Vitamin K",
+                "Hyaluronic Acid"
+            ],
+            "stock": 30,
+            "rating": 4.7
+        },
+        {
+            "id": 12,
+            "name": "Lip Sleeping Mask",
+            "category": "Treatments",
+            "price": 125000,
+            "image": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500&q=80",
+            "description": "Overnight lip treatment that deeply nourishes and repairs dry, chapped lips for soft, smooth lips by morning.",
+            "ingredients": [
+                "Shea Butter",
+                "Vitamin E",
+                "Berry Extract",
+                "Hyaluronic Acid"
+            ],
+            "stock": 42,
+            "rating": 4.8
         }
-    ]
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "Cleansers",
+            "description": "Face wash, cleansing oil, micellar water"
+        },
+        {
+            "id": 2,
+            "name": "Toners",
+            "description": "Hydrating and exfoliating toners"
+        },
+        {
+            "id": 3,
+            "name": "Serums",
+            "description": "Targeted treatments for specific skin concerns"
+        },
+        {
+            "id": 4,
+            "name": "Moisturizers",
+            "description": "Day cream, night cream, gel moisturizer"
+        },
+        {
+            "id": 5,
+            "name": "Sunscreen",
+            "description": "SPF protection for daily use"
+        },
+        {
+            "id": 6,
+            "name": "Masks",
+            "description": "Sheet masks, clay masks, sleeping masks"
+        },
+        {
+            "id": 7,
+            "name": "Eye Care",
+            "description": "Eye cream and eye serum"
+        },
+        {
+            "id": 8,
+            "name": "Treatments",
+            "description": "Acne treatment, anti-aging, special care"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Test User",
+            "email": "test@glowcare.com",
+            "avatar": "https://ui-avatars.com/api/?name=Test+User"
+        }
+    ],
+    "orders": []
 }
