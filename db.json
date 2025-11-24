@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Sneakers Sport Premium",
+      "price": 350000,
+      "category": "Fashion",
+      "description": "Sneakers sport premium dengan desain modern dan nyaman dipakai untuk aktivitas sehari-hari",
+      "stock": 25,
+      "image": "http://localhost:8080/src/assets/product-sneakers.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Backpack Travel Pro",
+      "price": 220000,
+      "category": "Accessories",
+      "description": "Tas ransel berkualitas tinggi dengan banyak kompartemen untuk traveling dan aktivitas outdoor",
+      "stock": 15,
+      "image": "http://localhost:8080/src/assets/product-backpack.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Smart Watch Elite",
+      "price": 1250000,
+      "category": "Electronics",
+      "description": "Smart watch dengan fitur lengkap untuk tracking kesehatan dan notifikasi smartphone",
+      "stock": 10,
+      "image": "http://localhost:8080/src/assets/product-watch.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Wireless Headphones Pro",
+      "price": 850000,
+      "category": "Electronics",
+      "description": "Headphones wireless dengan noise cancelling dan kualitas suara premium",
+      "stock": 20,
+      "image": "http://localhost:8080/src/assets/product-headphones.jpg"
+    }
+  ]
+}
