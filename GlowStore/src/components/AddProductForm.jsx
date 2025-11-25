@@ -9,10 +9,11 @@ const AddProductForm = () => {
     description: '',
     price: '',
     category: '',
-    image: '',
+    image: null, // Change to null for file
     rating: 0,
     stock: 0
   });
+  const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -23,6 +24,23 @@ const AddProductForm = () => {
         ? parseFloat(value) || 0
         : value
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData(prev => ({
+        ...prev,
+        image: file
+      }));
+
+      // Create preview for the selected image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -137,19 +155,29 @@ const AddProductForm = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Image URL
+                  Product Image
                 </label>
-                <input
-                  type="text"
-                  name="image"
-                  value={formData.image}
-                  onChange={handleChange}
-                  placeholder="/produk/vitaminC.jpeg"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-blue-500 focus:border-transparent shadow-sm transition duration-200"
-                />
-                <p className="mt-1 text-xs text-gray-500 italic">
-                  Use local paths like: /produk/vitaminC.jpeg, /produk/mois.jpeg, /produk/reti.jpeg, /produk/clen.jpeg, /produk/sunscreen.jpeg
-                </p>
+                <div className="flex flex-col items-center">
+                  {previewImage ? (
+                    <div className="mb-4">
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="max-w-full max-h-48 rounded-lg shadow-md"
+                      />
+                    </div>
+                  ) : (
+                    <div className="mb-4 text-gray-500 text-center">
+                      <p>No image selected</p>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-blue-500 focus:border-transparent shadow-sm transition duration-200"
+                  />
+                </div>
               </div>
             </div>
 

@@ -20,12 +20,26 @@ export const getProductById = async (id) => {
 
 // Create a new product
 export const createProduct = async (productData) => {
+  const formData = new FormData();
+
+  // Append all the regular fields
+  Object.keys(productData).forEach(key => {
+    if (key !== 'image') {
+      formData.append(key, productData[key]);
+    }
+  });
+
+  // Append the image file if it exists
+  if (productData.image instanceof File) {
+    formData.append('image', productData.image);
+  } else if (typeof productData.image === 'string' && productData.image) {
+    // If it's still a URL string, use that
+    formData.append('image', productData.image);
+  }
+
   const response = await fetch(`${API_BASE_URL}/products`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(productData),
+    body: formData,
   });
   if (!response.ok) {
     throw new Error('Failed to create product');
