@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { ShoppingCart, Heart, Loader2 } from 'lucide-react';
+//muti
 
-// Pastikan path ke api, Button, Navbar, dan Footer sudah benar
-import { getProduct } from '../services/api';
-import Button from '../components/Button';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from 'react'; 
+import { useParams } from 'react-router-dom'; 
+import { ShoppingCart, Heart, Loader2 } from 'lucide-react'; 
 
-// --- PALET WARNA APLIKASI (untuk referensi Tailwind) ---
-// Base: #FAF9F6, #F5F1EC, #FDEFE8
-// Primary/Brand Accent (Gold/Champagne): #D4AF7F
-// CTA/Highlight (Soft Gold): #E0C097
-// Secondary/Support (Taupe): #8E8D8A
-// Text: #2C2C2C, #555555
+// Pastikan path ke api, Button, Navbar, dan Footer sudah benar 
+import { getProduct } from '../services/api'; 
+import Button from '../components/Button'; 
+import Navbar from '../components/Navbar'; 
+import Footer from '../components/Footer'; 
 
-// Utility untuk format harga
-const formatPrice = (price) => {
-  const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
-  if (isNaN(numericPrice)) return 'Harga tidak tersedia';
+// Utility untuk format harga 
+const formatPrice = (price) => { 
+  const numericPrice = typeof price === 'string' ? parseFloat(price) : price; 
+  if (isNaN(numericPrice)) return 'Harga tidak tersedia'; 
   return new Intl.NumberFormat('id-ID', { 
-    style: 'currency', 
+    style: 'currency',  
     currency: 'IDR', 
-    minimumFractionDigits: 0, 
+    minimumFractionDigits: 0,  
     maximumFractionDigits: 0 
   }).format(numericPrice);
 };
