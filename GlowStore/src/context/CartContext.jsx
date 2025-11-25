@@ -15,7 +15,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART': {
       const existingItem = state.items.find(item => item.productId === action.payload.productId);
-      
+
       let updatedItems;
       if (existingItem) {
         updatedItems = state.items.map(item =>
@@ -50,7 +50,7 @@ const cartReducer = (state, action) => {
     }
 
     case 'UPDATE_QUANTITY': {
-      const updatedItems = state.items.map(item => 
+      const updatedItems = state.items.map(item =>
         item.productId === action.payload.productId
           ? { ...item, quantity: action.payload.quantity }
           : item
@@ -120,6 +120,18 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'CLEAR_CART' });
   };
 
+  // Process payment function
+  const processPayment = async (paymentData) => {
+    // In a real implementation, this would call your backend API
+    // For now, we'll simulate a payment processing
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // Simulate payment processing result
+        resolve({ success: true, transactionId: `txn_${Date.now()}` });
+      }, 2000);
+    });
+  };
+
   // Context value to be shared
   const value = {
     items: state.items,
@@ -128,7 +140,8 @@ export const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateQuantity,
-    clearCart
+    clearCart,
+    processPayment
   };
 
   return (

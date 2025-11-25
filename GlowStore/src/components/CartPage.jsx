@@ -124,9 +124,21 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-sky-blue-500 to-indigo-600 hover:from-sky-blue-600 hover:to-indigo-700 text-white py-3 px-4 rounded-lg font-medium shadow-md transition duration-200">
-                Proceed to Checkout
-              </button>
+              {items.length > 0 ? (
+                <Link
+                  to="/checkout"
+                  className="w-full bg-gradient-to-r from-sky-blue-500 to-indigo-600 hover:from-sky-blue-600 hover:to-indigo-700 text-white py-3 px-4 rounded-lg font-medium shadow-md transition duration-200 inline-block text-center"
+                >
+                  Proceed to Checkout
+                </Link>
+              ) : (
+                <button
+                  className="w-full bg-gray-300 text-white py-3 px-4 rounded-lg font-medium shadow-md cursor-not-allowed"
+                  disabled
+                >
+                  Proceed to Checkout
+                </button>
+              )}
             </div>
           </div>
         )}

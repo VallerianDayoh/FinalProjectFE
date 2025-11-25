@@ -16,7 +16,7 @@ const Navbar = () => {
                 alt="Beauty Glow Logo"
                 className="h-10 w-10 object-contain mr-3"
               />
-              <span className="text-2xl font-bold text-white">Beauty Glow</span>
+              <span className="text-2xl font-bold text-pink-300">Beauty Glow</span>
             </Link>
           </div>
 
@@ -47,6 +47,13 @@ const Navbar = () => {
               className="bg-white text-sky-blue-600 hover:bg-gray-100 px-4 py-2 rounded-md text-sm font-medium transition duration-200 shadow-md hover:shadow-lg"
             >
               Add Product
+            </Link>
+
+            <Link
+              to="/admin"
+              className="bg-gradient-to-r from-purple-500 to-violet-600 text-white hover:from-purple-600 hover:to-violet-700 px-4 py-2 rounded-md text-sm font-medium transition duration-200 shadow-md hover:shadow-lg"
+            >
+              Admin
             </Link>
 
             {/* Cart icon */}
@@ -117,6 +124,13 @@ const Navbar = () => {
             className="bg-white text-sky-blue-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium shadow-md"
           >
             Add Product
+          </Link>
+
+          <Link
+            to="/admin"
+            className="bg-gradient-to-r from-purple-500 to-violet-600 text-white hover:from-purple-600 hover:to-violet-700 block px-3 py-2 rounded-md text-base font-medium shadow-md"
+          >
+            Admin
           </Link>
         </div>
       </div>

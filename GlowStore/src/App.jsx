@@ -9,6 +9,10 @@ import AddProductForm from './components/AddProductForm';
 import EditProductForm from './components/EditProductForm';
 import About from './components/About';
 import CartPage from './components/CartPage';
+import CheckoutPage from './components/CheckoutPage';
+import PaymentSuccessPage from './components/PaymentSuccessPage';
+import PaymentCancelPage from './components/PaymentCancelPage';
+import AdminPage from './components/AdminPage';
 
 function App() {
   return (
@@ -29,7 +33,7 @@ function App() {
                     <p className="text-sky-blue-100 max-w-3xl mx-auto mb-8">Discover and shop the best skincare products for healthy, glowing skin. Quality ingredients, proven results.</p>
                     <a
                       href="#products"
-                      className="inline-block bg-white text-sky-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                      className="inline-block bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
                     >
                       Shop Now
                     </a>
@@ -62,6 +66,10 @@ function App() {
               <Route path="/edit-product/:id" element={<EditProductForm />} />
               <Route path="/about" element={<About />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/payment-success" element={<PaymentSuccessPage />} />
+              <Route path="/payment-cancel" element={<PaymentCancelPage />} />
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </main>
 
