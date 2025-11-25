@@ -1,3 +1,6 @@
+// Rumagit, pranata vareliano
+
+
 import { useState, useEffect, useRef } from 'react';
 import { Sparkles, Search } from 'lucide-react';
 
@@ -119,11 +122,10 @@ const Home = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    selectedCategory === category
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${selectedCategory === category
                       ? 'bg-[#D4AF7F] text-[#FAF9F6] shadow-md'
                       : 'bg-[#E6C6C6] text-[#2C2C2C] hover:bg-[#B7C5B6] hover:text-[#FAF9F6]'
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
