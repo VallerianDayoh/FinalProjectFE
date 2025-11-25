@@ -1,3 +1,4 @@
+// Edit by Imanuel Walintukan
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Edit2, Trash2, Package, RefreshCw } from 'lucide-react';
@@ -10,19 +11,19 @@ import { getProducts, deleteProduct } from '../services/api';
 // Palet Warna Mewah
 const COLORS = {
   // Background / Base
-  BASE_LIGHTEST: '#FAF9F6', // soft, bersih
-  BASE_LIGHT: '#F5F1EC', // warm off-white
+  BASE_LIGHTEST: '#FAF9F6', 
+  BASE_LIGHT: '#F5F1EC', 
   // Primary / Brand Accent
-  ACCENT_GOLD: '#D4AF7F', // gold/champagne
-  ACCENT_BLUSH: '#E6C6C6', // blush pink
+  ACCENT_GOLD: '#D4AF7F', 
+  ACCENT_BLUSH: '#E6C6C6', 
   // Secondary / Support
-  SUPPORT_TAUPE: '#8E8D8A', // taupe
+  SUPPORT_TAUPE: '#8E8D8A', 
   // Text / Foreground
   TEXT_DARK: '#2C2C2C',
   TEXT_MEDIUM: '#555555',
   // CTA / Highlight
-  CTA_SOFT_GOLD: '#E0C097', // soft gold
-  CTA_PEACH: '#F7BFA1', // peach
+  CTA_SOFT_GOLD: '#E0C097', 
+  CTA_PEACH: '#F7BFA1', 
 };
 
 const AdminDashboard = () => {

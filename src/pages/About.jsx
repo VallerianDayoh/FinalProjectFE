@@ -1,3 +1,4 @@
+// Edit by Imanuel Walintukan
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -6,7 +7,6 @@ import { ShoppingBag, LayoutDashboard, Code, Palette, User, Briefcase } from 'lu
 
 // Developer Data
 const developers = [
-  // Catatan: Warna latar belakang placeholder gambar telah diganti dengan warna dari palet Anda.
   // Placeholder menggunakan #D4AF7F (Gold/Champagne), #E6C6C6 (Blush Pink), #B7C5B6 (Sage), dan #C9B6C1 (Dusty Mauve)
   { id: 1, name: 'Dayoh, Vallerian Dava', role: 'Lead Developer', icon: Code, image: 'https://placehold.co/150x150/D4AF7F/2C2C2C?text=VD', bio: 'Fokus pada arsitektur React dan memastikan performa UI yang optimal.' },
   { id: 2, name: 'Makarawung, Mutiara', role: 'UI/UX Designer', icon: Palette, image: 'https://placehold.co/150x150/E6C6C6/2C2C2C?text=MM', bio: 'Bertanggung jawab atas desain visual dan pengalaman pengguna GlowCart.' },
@@ -14,12 +14,11 @@ const developers = [
   { id: 4, name: 'Walintukan, Imanuel', role: 'Quality Assurance & Content', icon: User, image: 'https://placehold.co/150x150/C9B6C1/2C2C2C?text=IW', bio: 'Memastikan kualitas produk digital dan mengoptimalkan deskripsi konten.' },
 ];
 
-// Palet Warna:
-// Base: #FAF9F6, #F5F1EC, #FDEFE8
-// Primary Accent (Gold/Champagne): #D4AF7F
-// Secondary (Charcoal/Taupe): #4A4A48, #8E8D8A
-// Text: #2C2C2C, #555555
-// CTA: #E0C097 (Soft Gold)
+//#FAF9F6, #F5F1EC, #FDEFE8
+//  #D4AF7F
+//  #4A4A48, #8E8D8A
+// T #2C2C2C, #555555
+// #E0C097 (Soft Gold)
 
 const About = () => (
   <div className="min-h-screen flex flex-col pt-16 bg-[#FAF9F6]"> {/* Base: Soft Off-White */}
