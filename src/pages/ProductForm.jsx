@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+//muti
 
-import Navbar from "../components/Navbar";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import { useState, useEffect } from "react"; 
+import { useParams, useNavigate, Link } from "react-router-dom"; 
+import { ArrowLeft, Save, Loader2 } from "lucide-react"; 
 
-import { getProduct, createProduct, updateProduct } from "../services/api";
+import Navbar from "../components/Navbar"; 
+import Button from "../components/Button"; 
+import Input from "../components/Input"; 
 
-const ProductForm = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const isEditMode = Boolean(id);
+import { getProduct, createProduct, updateProduct } from "../services/api"; 
 
-  const [loading, setLoading] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+const ProductForm = () => { 
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
+  const isEditMode = Boolean(id); 
+
+  const [loading, setLoading] = useState(false); 
+  const [submitting, setSubmitting] = useState(false); 
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     title: "",
