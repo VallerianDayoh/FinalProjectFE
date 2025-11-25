@@ -13,28 +13,43 @@ const Button = ({
   onClick,
   ...props 
 }) => {
+  // === STYLES MODERN & LUXURY SKINCARE PALETTE ===
+  
   const baseStyles =
-    'inline-flex items-center justify-center font-medium transition-all duration-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center font-semibold transition-all duration-300 rounded-xl disabled:opacity-60 disabled:cursor-not-allowed tracking-wide';
 
   const variants = {
+    // Primary: Gold / Champagne
     primary:
-      'bg-primary text-primary-foreground hover:bg-primary-light shadow-glow hover:shadow-lg',
+      'bg-[#D4AF7F] text-[#FAF9F6] hover:bg-[#E0C097] shadow-lg shadow-[#D4AF7F]/30 transform active:scale-98',
+    
+    // Secondary: Soft Blush / Grey
     secondary:
-      'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground',
+      'bg-[#E6C6C6] text-[#2C2C2C] hover:bg-[#D7CACA] border border-[#D7CACA]',
+    
+    // Accent: Sage / Light Green
     accent:
-      'bg-accent text-accent-foreground hover:bg-accent-dark',
+      'bg-[#B7C5B6] text-[#FAF9F6] hover:bg-[#AABBA9] shadow-md',
+      
+    // Danger: Soft Red
     danger:
-      'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+      'bg-[#F28C8C] text-[#FAF9F6] hover:bg-[#E76C6C] shadow-md shadow-[#F28C8C]/30',
+      
+    // Outline: Gold border
     outline:
-      'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground',
+      'border-2 border-[#D4AF7F] text-[#D4AF7F] hover:bg-[#FDF6EC] hover:text-[#B38D5D]',
+      
+    // Ghost: Subtle hover effect
     ghost:
-      'text-foreground hover:bg-secondary',
+      'text-[#2C2C2C] hover:bg-[#FAF9F6] hover:text-[#D4AF7F] border border-transparent',
   };
 
   const sizes = {
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-4 text-lg',
+    // Size untuk icon-only
+    icon: 'p-3 text-base rounded-full',
   };
 
   return (

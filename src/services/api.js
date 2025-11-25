@@ -12,22 +12,21 @@ const api = axios.create({
 });
 
 
-// =====================================    ==================
+// =======================================================
 // ERROR HANDLER
-// Fungsi ini untuk menangani error dengan pesan yang lebih jelas.
 // =======================================================
 const handleError = (error) => {
   if (error.response) {
     // Ada response dari server, tapi statusnya error
     throw new Error(
       `Server Error: ${error.response.status} - ${
-        error.response.data?.message || 'Something went wrong'
+        error.response.data?.message || 'Terjadi kesalahan pada server.'
       }`
     );
   } else if (error.request) {
     // Request sudah dikirim, tapi server tidak merespons
     throw new Error(
-      'Network Error: Unable to reach the server. Please check if json-server is running.'
+      'Network Error: Gagal terhubung ke server. Pastikan json-server berjalan.'
     );
   } else {
     // Error lain (misalnya salah konfigurasi)
@@ -37,15 +36,36 @@ const handleError = (error) => {
 
 
 // =======================================================
-// PRODUCT API FUNCTIONS
-// Semua fungsi CRUD untuk endpoint "/products".
+// UTILITY: Data Transformation
 // =======================================================
+
+// Fungsi untuk mengkonversi data dari format API (name) ke format Aplikasi (title)
+const formatProductForApp = (product) => ({
+    ...product,
+    title: product.name || product.title, // Ambil 'name' dan ubah jadi 'title'
+});
+
+// Fungsi untuk mengkonversi data dari format Aplikasi (title) ke format API (name)
+const formatProductForApi = (productData) => {
+    // Jika productData.title ada, gunakan itu sebagai 'name'
+    if (productData.title) {
+        // eslint-disable-next-line no-unused-vars
+        const { title, ...rest } = productData;
+        return {
+            ...rest,
+            name: title, // Mengganti 'title' menjadi 'name'
+        };
+    }
+    return productData; // Jika tidak ada 'title', kirim apa adanya
+};
+
 
 // GET ALL PRODUCTS
 export const getProducts = async () => {
   try {
     const response = await api.get('/products');
-    return response.data;
+    // Map setiap item untuk mengkonversi 'name' menjadi 'title'
+    return response.data.map(formatProductForApp);
   } catch (error) {
     handleError(error);
   }
@@ -55,7 +75,8 @@ export const getProducts = async () => {
 export const getProduct = async (id) => {
   try {
     const response = await api.get(`/products/${id}`);
-    return response.data;
+    // Konversi 'name' menjadi 'title'
+    return formatProductForApp(response.data);
   } catch (error) {
     handleError(error);
   }
@@ -64,8 +85,11 @@ export const getProduct = async (id) => {
 // CREATE NEW PRODUCT
 export const createProduct = async (productData) => {
   try {
-    const response = await api.post('/products', productData);
-    return response.data;
+    // Konversi 'title' menjadi 'name' sebelum dikirim
+    const dataToSend = formatProductForApi(productData);
+    const response = await api.post('/products', dataToSend);
+    // Konversi data balik (jika ada)
+    return formatProductForApp(response.data); 
   } catch (error) {
     handleError(error);
   }
@@ -74,8 +98,13 @@ export const createProduct = async (productData) => {
 // UPDATE PRODUCT
 export const updateProduct = async (id, productData) => {
   try {
-    const response = await api.put(`/products/${id}`, productData);
-    return response.data;
+    // Konversi 'title' menjadi 'name' sebelum dikirim
+    const dataToSend = formatProductForApi(productData);
+    // Menggunakan PATCH karena kita hanya perlu mengupdate field yang berubah, 
+    // meskipun PUT juga bisa, PATCH lebih efisien. json-server mendukung keduanya.
+    const response = await api.patch(`/products/${id}`, dataToSend); 
+    // Konversi data balik (jika ada)
+    return formatProductForApp(response.data);
   } catch (error) {
     handleError(error);
   }
@@ -94,6 +123,5 @@ export const deleteProduct = async (id) => {
 
 // =======================================================
 // EXPORT DEFAULT AXIOS INSTANCE
-// Jika nanti ingin request custom, cukup import api.
 // =======================================================
 export default api;

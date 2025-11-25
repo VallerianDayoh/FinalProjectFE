@@ -1,40 +1,85 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Sneakers Sport Premium",
-      "price": 350000,
-      "category": "Fashion",
-      "description": "Sneakers sport premium dengan desain modern dan nyaman dipakai untuk aktivitas sehari-hari",
+      "id": "2",
+      "name": "Facial Wash Gentle Cleanser",
+      "price": 65000,
+      "category": "Cleanser",
+      "description": "Pembersih wajah bertekstur gel yang lembut, tidak membuat kulit kering, dan mampu membersihkan kotoran tanpa merusak skin barrier.",
+      "stock": 50,
+      "image": "https://www.sociolla.com/face-wash/7914-gentle-skin-cleanser"
+    },
+    {
+      "id": "3",
+      "name": "Ultimate Brightening Toner",
+      "price": 75000,
+      "category": "Toner",
+      "description": "Toner pencerah yang membantu meratakan warna kulit dan mempersiapkan kulit untuk menerima serum/moisturizer berikutnya.",
+      "stock": 35,
+      "image": "https://placehold.co/400x400/9CA3AF/ffffff?text=Brightening+Toner"
+    },
+    {
+      "id": "4",
+      "name": "Niacinamide Serum 10%",
+      "price": 99000,
+      "category": "Serum",
+      "description": "Serum dengan konsentrasi Niacinamide tinggi untuk mencerahkan, menyamarkan noda hitam, dan mengontrol minyak berlebih.",
+      "stock": 28,
+      "image": "https://placehold.co/400x400/4B5563/ffffff?text=Niacinamide+Serum"
+    },
+    {
+      "id": "5",
+      "name": "Calm & Hydrating Barrier Moisturizer",
+      "price": 85000,
+      "category": "Moisturizer",
+      "description": "Pelembap untuk memperkuat skin barrier, menenangkan kulit kemerahan, dan memberikan hidrasi maksimal tanpa rasa lengket.",
+      "stock": 40,
+      "image": "https://placehold.co/400x400/374151/ffffff?text=Barrier+Moisturizer"
+    },
+    {
+      "id": "6",
+      "name": "Acne Care Spot Treatment",
+      "price": 55000,
+      "category": "Treatment",
+      "description": "Obat totol jerawat yang bekerja cepat meredakan peradangan dan mengeringkan jerawat aktif.",
+      "stock": 22,
+      "image": "https://placehold.co/400x400/78716C/ffffff?text=Acne+Spot"
+    },
+    {
+      "id": "7",
+      "name": "Exfoliating Gentle Pads",
+      "price": 110000,
+      "category": "Exfoliator",
+      "description": "Pads eksfoliasi lembut yang mengandung AHA/BHA untuk mengangkat sel kulit mati dan membuat kulit lebih halus.",
+      "stock": 18,
+      "image": "https://placehold.co/400x400/D4D4D4/333333?text=Exfo+Pads"
+    },
+    {
+      "id": "8",
+      "name": "Deep Cleansing Balm",
+      "price": 95000,
+      "category": "Cleanser",
+      "description": "Cleansing balm yang efektif membersihkan make-up tebal dan kotoran tanpa meninggalkan residu minyak.",
+      "stock": 30,
+      "image": "https://placehold.co/400x400/A1A1AA/ffffff?text=Cleansing+Balm"
+    },
+    {
+      "id": "9",
+      "name": "Vitamin C Glow Serum",
+      "price": 105000,
+      "category": "Serum",
+      "description": "Serum Vitamin C dosis stabil untuk memberikan efek kulit bercahaya, antioksidan, dan mengurangi tanda penuaan dini.",
       "stock": 25,
-      "image": "http://localhost:8080/src/assets/product-sneakers.jpg"
+      "image": "https://placehold.co/400x400/FAFAFA/333333?text=Vitamin+C+Serum"
     },
     {
-      "id": 2,
-      "name": "Backpack Travel Pro",
-      "price": 220000,
-      "category": "Accessories",
-      "description": "Tas ransel berkualitas tinggi dengan banyak kompartemen untuk traveling dan aktivitas outdoor",
-      "stock": 15,
-      "image": "http://localhost:8080/src/assets/product-backpack.jpg"
-    },
-    {
-      "id": 3,
-      "name": "Smart Watch Elite",
-      "price": 1250000,
-      "category": "Electronics",
-      "description": "Smart watch dengan fitur lengkap untuk tracking kesehatan dan notifikasi smartphone",
-      "stock": 10,
-      "image": "http://localhost:8080/src/assets/product-watch.jpg"
-    },
-    {
-      "id": 4,
-      "name": "Wireless Headphones Pro",
-      "price": 850000,
-      "category": "Electronics",
-      "description": "Headphones wireless dengan noise cancelling dan kualitas suara premium",
-      "stock": 20,
-      "image": "http://localhost:8080/src/assets/product-headphones.jpg"
+      "id": "10",
+      "name": "Hydrating Face Mist",
+      "price": 49000,
+      "category": "Mist",
+      "description": "Face mist ringan untuk menyegarkan kulit kapan saja, menjaga kelembapan, dan mengunci make-up.",
+      "stock": 38,
+      "image": "https://placehold.co/400x400/E5E7EB/333333?text=Face+Mist"
     }
   ]
 }

@@ -1,168 +1,214 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Edit2, Trash2, Package } from 'lucide-react';
+import { Plus, Edit2, Trash2, Package, RefreshCw } from 'lucide-react';
 
-// Komponen reusable
+import Navbar from '../components/Navbar';
 import Button from '../components/Button';
 
-// API Services
 import { getProducts, deleteProduct } from '../services/api';
 
-const AdminDashboard = () => {
-  // ================================
-  // STATE
-  // ================================
-  const [products, setProducts] = useState([]);  // Menyimpan daftar produk
-  const [loading, setLoading] = useState(true);  // Loading indicator
+// Palet Warna Mewah
+const COLORS = {
+  // Background / Base
+  BASE_LIGHTEST: '#FAF9F6', // soft, bersih
+  BASE_LIGHT: '#F5F1EC', // warm off-white
+  // Primary / Brand Accent
+  ACCENT_GOLD: '#D4AF7F', // gold/champagne
+  ACCENT_BLUSH: '#E6C6C6', // blush pink
+  // Secondary / Support
+  SUPPORT_TAUPE: '#8E8D8A', // taupe
+  // Text / Foreground
+  TEXT_DARK: '#2C2C2C',
+  TEXT_MEDIUM: '#555555',
+  // CTA / Highlight
+  CTA_SOFT_GOLD: '#E0C097', // soft gold
+  CTA_PEACH: '#F7BFA1', // peach
+};
 
-  // ================================
-  // LOAD PRODUCTS SAAT PERTAMA MASUK
-  // ================================
+const AdminDashboard = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     loadProducts();
   }, []);
 
-  // ================================
-  // FETCH ALL PRODUCTS
-  // ================================
   const loadProducts = async () => {
     try {
       setLoading(true);
       const data = await getProducts();
-      setProducts(data);
+
+      if (!Array.isArray(data)) {
+        setProducts([]);
+      } else {
+        const clean = data.map((item) => ({
+          id: item.id || item._id,
+          title: item.title || 'Untitled Product',
+          category: item.category || 'Uncategorized',
+          price: item.price !== undefined ? item.price : 0,
+          description: item.description || 'No description available.',
+          image: item.image || ''
+        }));
+
+        setProducts(clean);
+      }
     } catch (error) {
-      alert(error.message || 'Failed to load products');
+      console.error('Error loading products:', error);
+      alert('Gagal memuat produk. Silakan coba lagi.');
+      setProducts([]);
     } finally {
       setLoading(false);
     }
   };
 
-  // ================================
-  // DELETE PRODUCT
-  // ================================
   const handleDelete = async (id, title) => {
-    const confirmDelete = window.confirm(
-      `Are you sure you want to delete "${title}"? This action cannot be undone.`
-    );
+    const confirmDelete = window.confirm(`Apakah Anda yakin ingin menghapus produk "${title}"?`);
 
     if (!confirmDelete) return;
 
     try {
       await deleteProduct(id);
-      setProducts(products.filter((p) => p.id !== id));
-      alert('Product deleted successfully');
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+      alert('Produk berhasil dihapus!');
     } catch (error) {
-      alert(error.message || 'Failed to delete product');
+      console.error('Error deleting product:', error);
+      alert('Gagal menghapus produk. Terjadi kesalahan.');
     }
   };
 
-  // ================================
-  // RENDER UI
-  // ================================
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0
+    }).format(price);
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    // Base Background: #FAF9F6
+    <div style={{ backgroundColor: COLORS.BASE_LIGHTEST }} className="min-h-screen">
+      <Navbar /> 
 
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* ================================
-              PAGE HEADER
-          ================================= */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                Admin Dashboard
+              {/* Text Dark: #2C2C2C, Aksen Gold: #D4AF7F */}
+              <h1 style={{ color: COLORS.TEXT_DARK }} className="text-3xl sm:text-4xl font-extrabold mb-1">
+                <span style={{ color: COLORS.ACCENT_GOLD }}>Admin</span> Dashboard
               </h1>
-              <p className="text-muted-foreground">
-                Manage your product catalog
-              </p>
+              {/* Text Medium: #555555 */}
+              <p style={{ color: COLORS.TEXT_MEDIUM }} className="text-lg">Kelola semua produk Anda dengan mudah.</p>
             </div>
 
             <Link to="/admin/add">
-              <Button variant="primary" size="md">
+              <Button 
+                variant="primary" 
+                size="md" 
+                // CTA Soft Gold: #E0C097 (default) & #D4AF7F (hover)
+                style={{ backgroundColor: COLORS.CTA_SOFT_GOLD }}
+                className={`text-white shadow-lg transition duration-300 hover:opacity-90`} // Shadow akan disesuaikan
+              >
                 <Plus className="w-5 h-5 mr-2" />
-                Add New Product
+                Tambah Produk Baru
               </Button>
             </Link>
           </div>
-
-          {/* ================================
-              LOADING STATE
-          ================================= */}
+          
+          {/* Divider: border-gray-200 -> warna yang lebih lembut/base */}
+          <hr style={{ borderColor: COLORS.BASE_LIGHT }} className="mb-8" />
+          
+          {/* Main Content Area */}
           {loading ? (
-            <div className="bg-card rounded-2xl shadow-card p-8">
-              <div className="space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-16 bg-secondary rounded-lg animate-pulse"
-                  />
+            // Loading State: Menggunakan BASE_LIGHT untuk background elemen loading
+            <div style={{ backgroundColor: 'white' }} className="rounded-xl shadow-xl p-8 border" >
+              <div className="space-y-6">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="flex space-x-4 items-center">
+                    {/* Skeleton element: bg-gray-200 -> BASE_LIGHT */}
+                    <div style={{ backgroundColor: COLORS.BASE_LIGHT }} className="w-16 h-16 rounded-lg animate-pulse"></div>
+                    <div className="flex-1 space-y-2">
+                      <div style={{ backgroundColor: COLORS.BASE_LIGHT }} className="h-4 rounded w-3/4 animate-pulse"></div>
+                      <div style={{ backgroundColor: COLORS.BASE_LIGHT }} className="h-4 rounded w-1/2 animate-pulse"></div>
+                    </div>
+                    <div style={{ backgroundColor: COLORS.BASE_LIGHT }} className="h-8 w-16 rounded-full animate-pulse"></div>
+                  </div>
                 ))}
               </div>
             </div>
           ) : products.length > 0 ? (
-            // ================================
-            // PRODUCTS EXISTS
-            // ================================
-            <div className="bg-card rounded-2xl shadow-card overflow-hidden border border-border/50">
+            // Products Table (Desktop) and List (Mobile)
+            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
 
-              {/* DESKTOP TABLE */}
+              {/* Desktop Table (lg breakpoint and up) */}
               <div className="hidden lg:block overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-secondary border-b border-border">
+                <table className="min-w-full">
+                  {/* Table Header: bg-blue-50 -> BASE_LIGHT, text-blue-600 -> TEXT_MEDIUM */}
+                  <thead style={{ backgroundColor: COLORS.BASE_LIGHT }} className="border-b border-gray-200">
                     <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Image</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Title</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Category</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Price</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Description</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-foreground">Actions</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Image</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Title</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Category</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Price</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Description</th>
+                      <th style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
 
-                  <tbody className="divide-y divide-border">
+                  <tbody className="divide-y divide-gray-100">
                     {products.map((product) => (
-                      <tr key={product.id} className="hover:bg-secondary/50 transition-colors">
+                      // Hover: bg-blue-50/50 -> BASE_LIGHT/50
+                      <tr key={product.id} style={{ '--tw-bg-opacity': 0.5 }} className={`hover:bg-[${COLORS.BASE_LIGHT}] transition-colors`}>
                         <td className="px-6 py-4">
                           <img
                             src={product.image}
                             alt={product.title}
-                            className="w-16 h-16 rounded-lg object-cover"
+                            className="w-16 h-16 rounded-lg object-cover shadow-md border border-gray-100"
+                            onError={(e) => { e.target.onerror = null; e.target.src = '/placeholder-image.jpg'; }}
                           />
                         </td>
 
-                        <td className="px-6 py-4 font-medium text-foreground">
-                          {product.title}
-                        </td>
+                        {/* Text Dark: #2C2C2C */}
+                        <td style={{ color: COLORS.TEXT_DARK }} className="px-6 py-4 font-medium max-w-xs truncate">{product.title}</td>
 
                         <td className="px-6 py-4">
-                          <span className="px-3 py-1 bg-accent text-accent-foreground text-xs font-medium rounded-full">
+                          {/* Category Badge: bg-blue-100/text-blue-700 -> ACCENT_BLUSH/TEXT_DARK */}
+                          <span style={{ backgroundColor: COLORS.ACCENT_BLUSH, color: COLORS.TEXT_DARK }} className="px-3 py-1 text-xs font-medium rounded-full">
                             {product.category}
                           </span>
                         </td>
 
-                        <td className="px-6 py-4 font-semibold text-primary">
-                          {product.price}
-                        </td>
+                        {/* Price: text-blue-600 -> ACCENT_GOLD */}
+                        <td style={{ color: COLORS.ACCENT_GOLD }} className="px-6 py-4 font-bold">{formatPrice(product.price)}</td>
 
-                        <td className="px-6 py-4 text-muted-foreground text-sm max-w-md truncate">
+                        {/* Text Medium: #555555 */}
+                        <td style={{ color: COLORS.TEXT_MEDIUM }} className="px-6 py-4 text-sm max-w-xs truncate">
                           {product.description}
                         </td>
 
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-end space-x-2">
                             <Link to={`/admin/edit/${product.id}`}>
-                              <Button variant="ghost" size="sm">
+                              {/* Edit Button: text-blue-500/hover:bg-blue-100 -> ACCENT_GOLD/BASE_LIGHT */}
+                              <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                style={{ color: COLORS.ACCENT_GOLD }} 
+                                className={`hover:bg-[${COLORS.BASE_LIGHT}] transition-colors`}
+                              >
                                 <Edit2 className="w-4 h-4" />
                               </Button>
                             </Link>
 
                             <Button
                               variant="ghost"
-                              size="sm"
+                              size="icon"
                               onClick={() => handleDelete(product.id, product.title)}
-                              className="hover:text-destructive"
+                              // Delete Button: text-red-500/hover:bg-red-100 -> SUPPORT_TAUPE/BASE_LIGHT
+                              style={{ color: COLORS.SUPPORT_TAUPE }} 
+                              className={`hover:bg-[${COLORS.BASE_LIGHT}] transition-colors`}
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>
@@ -174,39 +220,45 @@ const AdminDashboard = () => {
                 </table>
               </div>
 
-              {/* ===================================
-                  MOBILE VERSION (CARD VIEW)
-              ==================================== */}
-              <div className="lg:hidden divide-y divide-border">
+              {/* Mobile List (Less than lg breakpoint) */}
+              <div className="lg:hidden divide-y divide-gray-100">
                 {products.map((product) => (
-                  <div key={product.id} className="p-4 space-y-3">
-                    <div className="flex space-x-4">
+                  // Hover: bg-blue-50/50 -> BASE_LIGHT/50
+                  <div key={product.id} className={`p-4 space-y-3 bg-white hover:bg-[${COLORS.BASE_LIGHT}] transition-colors`}>
+                    <div className="flex space-x-4 items-start">
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                        className="w-20 h-20 rounded-lg object-cover flex-shrink-0 shadow-md border border-gray-100"
+                        onError={(e) => { e.target.onerror = null; e.target.src = '/placeholder-image.jpg'; }}
                       />
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-foreground mb-1 truncate">
-                          {product.title}
-                        </h3>
+                        {/* Text Dark: #2C2C2C */}
+                        <h3 style={{ color: COLORS.TEXT_DARK }} className="font-bold mb-1 truncate">{product.title}</h3>
 
-                        <span className="inline-block px-2 py-1 bg-accent text-accent-foreground text-xs font-medium rounded-full mb-1">
+                        {/* Category Badge: bg-blue-100/text-blue-700 -> ACCENT_BLUSH/TEXT_DARK */}
+                        <span style={{ backgroundColor: COLORS.ACCENT_BLUSH, color: COLORS.TEXT_DARK }} className="inline-block px-2 py-1 text-xs font-medium rounded-full mb-2">
                           {product.category}
                         </span>
 
-                        <p className="text-primary font-semibold">{product.price}</p>
+                        {/* Price: text-blue-600 -> ACCENT_GOLD */}
+                        <p style={{ color: COLORS.ACCENT_GOLD }} className="font-bold text-lg">{formatPrice(product.price)}</p>
                       </div>
                     </div>
 
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {product.description}
-                    </p>
+                    {/* Text Medium: #555555 */}
+                    <p style={{ color: COLORS.TEXT_MEDIUM }} className="text-sm line-clamp-2">{product.description}</p>
 
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-3 pt-2">
                       <Link to={`/admin/edit/${product.id}`} className="flex-1">
-                        <Button variant="secondary" size="sm" className="w-full">
+                        {/* Edit Button: bg-blue-50/text-blue-600/hover:bg-blue-100 -> BASE_LIGHT/ACCENT_GOLD/BASE_LIGHT */}
+                        <Button 
+                          variant="secondary" 
+                          size="sm" 
+                          style={{ backgroundColor: COLORS.BASE_LIGHT, color: COLORS.ACCENT_GOLD, borderColor: COLORS.BASE_LIGHT }}
+                          className={`w-full hover:opacity-80 border`}
+                        >
                           <Edit2 className="w-4 h-4 mr-2" />
                           Edit
                         </Button>
@@ -216,36 +268,48 @@ const AdminDashboard = () => {
                         variant="danger"
                         size="sm"
                         onClick={() => handleDelete(product.id, product.title)}
-                        className="flex-1"
+                        // Delete Button: bg-red-500/hover:bg-red-600 -> SUPPORT_TAUPE/TEXT_DARK
+                        style={{ backgroundColor: COLORS.SUPPORT_TAUPE, color: COLORS.F8F8F8 }} 
+                        className={`flex-1 hover:opacity-80`}
                       >
                         <Trash2 className="w-4 h-4 mr-2" />
-                        Delete
+                        Hapus
                       </Button>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
           ) : (
-            // ================================
-            // EMPTY STATE (NO PRODUCTS)
-            // ================================
-            <div className="bg-card rounded-2xl shadow-card p-12 text-center">
-              <Package className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                No products yet
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Start by adding your first product to the catalog.
-              </p>
+            // Empty State
+            <div className="bg-white rounded-xl shadow-xl p-12 text-center border border-gray-100">
+              {/* Icon: text-blue-400 -> ACCENT_GOLD */}
+              <Package style={{ color: COLORS.ACCENT_GOLD }} className="w-16 h-16 mx-auto mb-4" />
+              {/* Text Dark: #2C2C2C */}
+              <h3 style={{ color: COLORS.TEXT_DARK }} className="text-2xl font-bold mb-2">Belum ada produk</h3>
+              {/* Text Medium: #555555 */}
+              <p style={{ color: COLORS.TEXT_MEDIUM }} className="mb-6">Tambahkan produk pertama Anda untuk mulai mengelola inventaris.</p>
 
               <Link to="/admin/add">
-                <Button variant="primary">
+                <Button 
+                  variant="primary"
+                  // CTA Soft Gold: #E0C097
+                  style={{ backgroundColor: COLORS.CTA_SOFT_GOLD }}
+                  className={`text-white shadow-lg transition duration-300 hover:opacity-90`}
+                >
                   <Plus className="w-5 h-5 mr-2" />
-                  Add First Product
+                  Tambahkan Produk Pertama
                 </Button>
               </Link>
+              <button 
+                onClick={loadProducts} 
+                // Refresh Link: text-blue-600 -> ACCENT_GOLD
+                style={{ color: COLORS.ACCENT_GOLD }}
+                className="mt-4 ml-4 hover:text-opacity-80 transition duration-150 flex items-center justify-center mx-auto"
+              >
+                <RefreshCw className="w-4 h-4 mr-1" />
+                Refresh
+              </button>
             </div>
           )}
 
